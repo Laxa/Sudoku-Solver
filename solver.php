@@ -63,18 +63,8 @@ function canPlaceNumber($grid, $x, $y, $i)
             return false;
     }
     // check square
-    if (in_array($y, [0, 1, 2]))
-        $indexY = 0;
-    else if (in_array($y, [3, 4, 5]))
-        $indexY = 3;
-    else
-        $indexY = 6;
-    if (in_array($x, [0, 1, 2]))
-        $indexX = 0;
-    else if (in_array($x, [3, 4, 5]))
-        $indexX = 3;
-    else
-        $indexX = 6;
+    $indexY = (int)($y / 3) * 3;
+    $indexX = (int)($x / 3) * 3;
     $flagY = $indexY;
     $flagX = $indexX;
     for (; $indexY < $flagY + 3; $indexY++)
