@@ -15,6 +15,8 @@ if (!$solve)
     echo "Failed to solve grid\n";
 displayGrid($grid);
 
+/* $grid is the 9x9 grid, values have to be int or result will be unexpected */
+/* return false if failed to solve the grid */
 function solveSudoku(&$grid, $x = 0, $y = 0)
 {
     // if number already set in the grid
@@ -53,13 +55,13 @@ function canPlaceNumber($grid, $x, $y, $i)
     // check columns
     for ($index = 0; $index < 9; $index++)
     {
-        if ($grid[$y][$index] === $i)
+        if ($grid[$y][$index] == $i)
             return false;
     }
     // check rows
     for ($index = 0; $index < 9; $index++)
     {
-        if ($grid[$index][$x] === $i)
+        if ($grid[$index][$x] == $i)
             return false;
     }
     // check square
@@ -69,8 +71,8 @@ function canPlaceNumber($grid, $x, $y, $i)
     $flagX = $indexX;
     for (; $indexY < $flagY + 3; $indexY++)
     {
-        for (; $indexX < $flagX + 3; $indexX++)
-            if ($grid[$indexY][$indexX] === $i)
+        for ($indexX = $flagX; $indexX < $flagX + 3; $indexX++)
+            if ($grid[$indexY][$indexX] == $i)
                 return false;
     }
     return true;
